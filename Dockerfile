@@ -1,5 +1,5 @@
-FROM node:20-alpine3.17
-LABEL maintainer="Deokgyu Yang <secugyu@gmail.com>" \
+FROM node:24-alpine3.22
+LABEL maintainer="Daniel Tien <dmtien@gmail.com>" \
       description="Lightweight Docusaurus container with Node.js based on Alpine Linux"
 
 RUN apk add --no-cache \
@@ -10,7 +10,7 @@ RUN apk add --no-cache \
 ENV TARGET_UID=1000
 ENV TARGET_GID=1000
 ENV AUTO_UPDATE='true'
-ENV WEBSITE_NAME='MyWebsite'
+ENV WEBSITE_NAME='Tien InfraDocs'
 ENV TEMPLATE='classic'
 ENV RUN_MODE='development'
 
@@ -28,7 +28,7 @@ COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 # Set files permission
 RUN chmod a+x /init.sh /auto_update_job.sh /run.sh
 
-EXPOSE 80
+EXPOSE 3000
 VOLUME [ "/docusaurus" ]
 ENTRYPOINT [ "/init.sh" ]
 
